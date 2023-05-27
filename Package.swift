@@ -4,12 +4,18 @@
 import PackageDescription
 
 let package = Package(
-    name: "PackageForCredoLabFramework",
+    name: "CredoLabFrameworks",
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
-            name: "PackageForCredoLabFramework",
-            targets: ["PackageForCredoLabFramework"]),
+            name: "CredoLabFrameworks",
+            targets: ["CredoLabFrameworks",
+                      "CredoAppMedia",
+                      "CredoAppMusic",
+                      "CredoAppCore",
+                      "CredoAppContacts",
+                      "CredoAppCalendarReminders",
+                      "CredoAppCalendarEvents"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -18,11 +24,21 @@ let package = Package(
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
+        .binaryTarget(name: "CredoAppMusic", path: "./Frameworks/CredoAppMusic.xcframework"),
+        .binaryTarget(name: "CredoAppMedia", path: "./Frameworks/CredoAppMedia.xcframework"),
+        .binaryTarget(name: "CredoAppCore", path: "./Frameworks/CredoAppCore.xcframework"),
+        .binaryTarget(name: "CredoAppContacts", path: "./Frameworks/CredoAppContacts.xcframework"),
+        .binaryTarget(name: "CredoAppCalendarReminders", path: "./Frameworks/CredoAppCalendarReminders.xcframework"),
+        .binaryTarget(name: "CredoAppCalendarEvents", path: "./Frameworks/CredoAppCalendarEvents.xcframework"),
         .target(
-            name: "PackageForCredoLabFramework",
-            dependencies: []),
-        .testTarget(
-            name: "PackageForCredoLabFrameworkTests",
-            dependencies: ["PackageForCredoLabFramework"]),
+            name: "CredoLabFrameworks",
+            dependencies: [
+                .target(name: "CredoAppMedia"),
+                .target(name: "CredoAppMusic"),
+                .target(name: "CredoAppCore"),
+                .target(name: "CredoAppContacts"),
+                .target(name: "CredoAppCalendarReminders"),
+                .target(name: "CredoAppCalendarEvents")],
+            path: "./Sources/")
     ]
 )
