@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CredoAppCore
 
 public class CredoWrapper {
     public static let shared = CredoWrapper()
